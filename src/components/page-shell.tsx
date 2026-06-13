@@ -1,7 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import type { ReactNode } from "react";
 
 export function PageShell({ eyebrow, title, lede, children }: { eyebrow: string; title: string; lede: string; children: ReactNode }) {
   return (
@@ -21,6 +20,3 @@ export function PageShell({ eyebrow, title, lede, children }: { eyebrow: string;
     </div>
   );
 }
-
-export { Link };
-export const Route = createFileRoute("/_shared")({ component: () => null });
