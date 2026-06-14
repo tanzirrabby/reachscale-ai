@@ -51,8 +51,8 @@ Return strictly valid JSON (no markdown, no commentary) matching this schema:
     await context.supabase.from("ai_generations").insert({
       user_id: context.userId,
       kind: "ad_copy",
-      input: data,
-      output: parsed as object,
+      input: data as never,
+      output: parsed as never,
     });
     return parsed as {
       headlines: string[];
@@ -90,8 +90,8 @@ Write the report in clean Markdown with these sections:
     await context.supabase.from("ai_generations").insert({
       user_id: context.userId,
       kind: "analysis",
-      input: data,
-      output: { markdown: text },
+      input: data as never,
+      output: { markdown: text } as never,
     });
     return { markdown: text };
   });
