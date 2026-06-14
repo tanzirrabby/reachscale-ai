@@ -39,7 +39,7 @@ function PricingPage() {
                 </li>
               ))}
             </ul>
-            <Link to="/signup" className={`mt-auto rounded-lg py-3 text-center text-sm font-medium ${t.featured ? "bg-brand text-white hover:brightness-110" : "border border-ink/10 hover:bg-zinc-100"}`}>
+            <Link to="/auth" className={`mt-auto rounded-lg py-3 text-center text-sm font-medium ${t.featured ? "bg-brand text-white hover:brightness-110" : "border border-ink/10 hover:bg-zinc-100"}`}>
               {t.cta}
             </Link>
           </div>
