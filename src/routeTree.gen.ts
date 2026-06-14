@@ -11,14 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UseCasesRouteImport } from './routes/use-cases'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as SignupRouteImport } from './routes/signup'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
 import { Route as FeaturesRouteImport } from './routes/features'
-import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedAiStudioRouteImport } from './routes/_authenticated/ai-studio'
 
 const UseCasesRoute = UseCasesRouteImport.update({
   id: '/use-cases',
@@ -28,11 +30,6 @@ const UseCasesRoute = UseCasesRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SignupRoute = SignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -45,11 +42,6 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IntegrationsRoute = IntegrationsRouteImport.update({
   id: '/integrations',
   path: '/integrations',
@@ -60,9 +52,13 @@ const FeaturesRoute = FeaturesRouteImport.update({
   path: '/features',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -70,94 +66,117 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAiStudioRoute = AuthenticatedAiStudioRouteImport.update({
+  id: '/ai-studio',
+  path: '/ai-studio',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/auth': typeof AuthRoute
   '/features': typeof FeaturesRoute
   '/integrations': typeof IntegrationsRoute
-  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/resources': typeof ResourcesRoute
-  '/signup': typeof SignupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/use-cases': typeof UseCasesRoute
+  '/ai-studio': typeof AuthenticatedAiStudioRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/auth': typeof AuthRoute
   '/features': typeof FeaturesRoute
   '/integrations': typeof IntegrationsRoute
-  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/resources': typeof ResourcesRoute
-  '/signup': typeof SignupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/use-cases': typeof UseCasesRoute
+  '/ai-studio': typeof AuthenticatedAiStudioRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/features': typeof FeaturesRoute
   '/integrations': typeof IntegrationsRoute
-  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/resources': typeof ResourcesRoute
-  '/signup': typeof SignupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/use-cases': typeof UseCasesRoute
+  '/_authenticated/ai-studio': typeof AuthenticatedAiStudioRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/dashboard'
+    | '/auth'
     | '/features'
     | '/integrations'
-    | '/login'
     | '/pricing'
     | '/resources'
-    | '/signup'
     | '/sitemap.xml'
     | '/use-cases'
+    | '/ai-studio'
+    | '/dashboard'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
+    | '/auth'
     | '/features'
     | '/integrations'
-    | '/login'
     | '/pricing'
     | '/resources'
-    | '/signup'
     | '/sitemap.xml'
     | '/use-cases'
+    | '/ai-studio'
+    | '/dashboard'
+    | '/api/chat'
   id:
     | '__root__'
     | '/'
-    | '/dashboard'
+    | '/_authenticated'
+    | '/auth'
     | '/features'
     | '/integrations'
-    | '/login'
     | '/pricing'
     | '/resources'
-    | '/signup'
     | '/sitemap.xml'
     | '/use-cases'
+    | '/_authenticated/ai-studio'
+    | '/_authenticated/dashboard'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   FeaturesRoute: typeof FeaturesRoute
   IntegrationsRoute: typeof IntegrationsRoute
-  LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
   ResourcesRoute: typeof ResourcesRoute
-  SignupRoute: typeof SignupRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UseCasesRoute: typeof UseCasesRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -176,13 +195,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/signup': {
-      id: '/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof SignupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/resources': {
       id: '/resources'
       path: '/resources'
@@ -195,13 +207,6 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/integrations': {
@@ -218,11 +223,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeaturesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -232,20 +244,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ai-studio': {
+      id: '/_authenticated/ai-studio'
+      path: '/ai-studio'
+      fullPath: '/ai-studio'
+      preLoaderRoute: typeof AuthenticatedAiStudioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAiStudioRoute: typeof AuthenticatedAiStudioRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAiStudioRoute: AuthenticatedAiStudioRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   FeaturesRoute: FeaturesRoute,
   IntegrationsRoute: IntegrationsRoute,
-  LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
   ResourcesRoute: ResourcesRoute,
-  SignupRoute: SignupRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UseCasesRoute: UseCasesRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
