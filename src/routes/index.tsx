@@ -85,7 +85,7 @@ function Landing() {
             Plan, automate, and scale your global campaigns from a single unified workspace. Built for agencies and teams that demand precision.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link to="/signup" className="inline-flex items-center gap-2 rounded-lg bg-brand py-2.5 pl-3 pr-4 text-sm font-medium text-white ring-1 ring-brand transition-transform hover:brightness-110 active:scale-[0.98]">
+            <Link to="/auth" className="inline-flex items-center gap-2 rounded-lg bg-brand py-2.5 pl-3 pr-4 text-sm font-medium text-white ring-1 ring-brand transition-transform hover:brightness-110 active:scale-[0.98]">
               <Sparkles className="size-4" /> Request a demo
             </Link>
             <Link to="/pricing" className="rounded-lg border border-ink/10 bg-canvas px-5 py-2.5 text-sm font-medium transition-colors hover:bg-zinc-100">
@@ -291,7 +291,7 @@ function Landing() {
                   ))}
                 </ul>
                 <Link
-                  to="/signup"
+                  to="/auth"
                   className={`mt-auto rounded-lg py-3 text-center text-sm font-medium transition-colors ${t.featured ? "bg-brand text-white hover:brightness-110" : "border border-ink/10 hover:bg-zinc-100"}`}
                 >
                   {t.cta}
@@ -310,7 +310,7 @@ function Landing() {
               <h2 className="max-w-[18ch] text-3xl font-semibold tracking-tight md:text-5xl">Marketing operations, finally consolidated.</h2>
               <p className="mt-5 max-w-[42ch] text-canvas/60">Bring your team, clients and stack into one workspace. 14-day trial. No card required.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/signup" className="rounded-lg bg-brand px-5 py-3 text-sm font-medium text-white hover:brightness-110">Start free trial</Link>
+                <Link to="/auth" className="rounded-lg bg-brand px-5 py-3 text-sm font-medium text-white hover:brightness-110">Start free trial</Link>
                 <Link to="/use-cases" className="rounded-lg border border-canvas/15 px-5 py-3 text-sm font-medium hover:bg-canvas/5">Talk to sales</Link>
               </div>
             </div>
